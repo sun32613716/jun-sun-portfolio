@@ -21,6 +21,8 @@ import BorderGlow from "./BorderGlow";
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 const navItems = [
   ["个人作品", "#works"],
   ["个人优势", "#strengths"],
@@ -39,48 +41,48 @@ const projects = [
   {
     title: "realistic design works",
     meta: "角色三视图 / 服装结构 / 角色设定",
-    image: "/assets/project-turnaround.webp",
-    fullImage: "/assets/project-turnaround-full.webp",
+    image: asset("assets/project-turnaround.webp"),
+    fullImage: asset("assets/project-turnaround-full.webp"),
     tags: ["Turnaround", "Outfit", "Game Ready"],
   },
   {
     title: "chibi design works",
     meta: "Q版设定 / Q版原画",
-    image: "/assets/chibi%20design%20work/project-Little%20Mage-thumb.webp",
-    fullImage: "/assets/chibi%20design%20work/project-Little%20Mage.webp",
+    image: asset("assets/chibi%20design%20work/project-Little%20Mage-thumb.webp"),
+    fullImage: asset("assets/chibi%20design%20work/project-Little%20Mage.webp"),
     gallery: [
-      "/assets/chibi%20design%20work/project-dog.webp",
-      "/assets/chibi%20design%20work/project-Little%20Mage.webp",
-      "/assets/chibi%20design%20work/project-mario.webp",
-      "/assets/chibi%20design%20work/project-rabbit.webp",
+      asset("assets/chibi%20design%20work/project-dog.webp"),
+      asset("assets/chibi%20design%20work/project-Little%20Mage.webp"),
+      asset("assets/chibi%20design%20work/project-mario.webp"),
+      asset("assets/chibi%20design%20work/project-rabbit.webp"),
     ],
     galleryThumbs: [
-      "/assets/chibi%20design%20work/project-dog-thumb.webp",
-      "/assets/chibi%20design%20work/project-Little%20Mage-thumb.webp",
-      "/assets/chibi%20design%20work/project-mario-thumb.webp",
-      "/assets/chibi%20design%20work/project-rabbit-thumb.webp",
+      asset("assets/chibi%20design%20work/project-dog-thumb.webp"),
+      asset("assets/chibi%20design%20work/project-Little%20Mage-thumb.webp"),
+      asset("assets/chibi%20design%20work/project-mario-thumb.webp"),
+      asset("assets/chibi%20design%20work/project-rabbit-thumb.webp"),
     ],
     tags: ["Design Sheet", "Gear", "Material"],
   },
   {
     title: "daily practice works",
     meta: "日常练习",
-    image: "/assets/project-skin-board.webp",
-    fullImage: "/assets/project-skin-board-full.webp",
+    image: asset("assets/project-skin-board.webp"),
+    fullImage: asset("assets/project-skin-board-full.webp"),
     tags: ["Skin", "Variant", "Sci-Fi"],
   },
   {
     title: "event banner design works",
     meta: "banner活动设计页面",
-    image: "/assets/project-ingame.webp",
-    fullImage: "/assets/project-ingame-full.webp",
+    image: asset("assets/project-ingame.webp"),
+    fullImage: asset("assets/project-ingame-full.webp"),
     tags: ["In Game", "Banner", "Presentation"],
   },
   {
     title: "Pixel art works",
     meta: "像素设定 / 像素换装 / 像素场景",
-    image: "/assets/project-ingame.webp",
-    fullImage: "/assets/project-ingame-full.webp",
+    image: asset("assets/project-ingame.webp"),
+    fullImage: asset("assets/project-ingame-full.webp"),
     tags: ["Pixel", "Costume", "Scene"],
   },
 ];
@@ -253,8 +255,8 @@ function Hero({ onOpenProject }) {
     <section className="hero section-dark" id="home">
       <video
         className="hero-video"
-        src="/assets/hero-loop.mp4"
-        poster="/assets/hero-poster.webp"
+        src={asset("assets/hero-loop.mp4")}
+        poster={asset("assets/hero-poster.webp")}
         preload="metadata"
         autoPlay
         muted
@@ -360,7 +362,7 @@ function About() {
 
         <div className="experience-overview">
           <div className="experience-portrait-card">
-            <img src="/assets/profile-character.webp" alt="角色人物图" loading="lazy" decoding="async" />
+            <img src={asset("assets/profile-character.webp")} alt="角色人物图" loading="lazy" decoding="async" />
             <span>Character Concept Design</span>
           </div>
 
