@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 
 import BorderGlow from "./BorderGlow";
+import TiltedCard from "./TiltedCard";
 
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
@@ -74,8 +75,36 @@ const projects = [
   {
     title: "event banner design works",
     meta: "banner活动设计页面",
-    image: asset("assets/project-ingame.webp"),
-    fullImage: asset("assets/project-ingame-full.webp"),
+    image: asset("assets/event%20banner%20design%20work/project-2.webp"),
+    fullImage: asset("assets/event%20banner%20design%20work/project-2.webp"),
+    gallery: [
+      asset("assets/event%20banner%20design%20work/project-2.webp"),
+      asset("assets/event%20banner%20design%20work/project-4.webp"),
+      asset("assets/event%20banner%20design%20work/project-5.webp"),
+      asset("assets/event%20banner%20design%20work/project-6.webp"),
+      asset("assets/event%20banner%20design%20work/project-7.webp"),
+      asset("assets/event%20banner%20design%20work/project-8.webp"),
+      asset("assets/event%20banner%20design%20work/project-9.webp"),
+      asset("assets/event%20banner%20design%20work/project-10.webp"),
+      asset("assets/event%20banner%20design%20work/project-11.webp"),
+      asset("assets/event%20banner%20design%20work/project-12.webp"),
+      asset("assets/event%20banner%20design%20work/project-13.webp"),
+      asset("assets/event%20banner%20design%20work/project-14.webp"),
+    ],
+    galleryThumbs: [
+      asset("assets/event%20banner%20design%20work/project-2.webp"),
+      asset("assets/event%20banner%20design%20work/project-4.webp"),
+      asset("assets/event%20banner%20design%20work/project-5.webp"),
+      asset("assets/event%20banner%20design%20work/project-6.webp"),
+      asset("assets/event%20banner%20design%20work/project-7.webp"),
+      asset("assets/event%20banner%20design%20work/project-8.webp"),
+      asset("assets/event%20banner%20design%20work/project-9.webp"),
+      asset("assets/event%20banner%20design%20work/project-10.webp"),
+      asset("assets/event%20banner%20design%20work/project-11.webp"),
+      asset("assets/event%20banner%20design%20work/project-12.webp"),
+      asset("assets/event%20banner%20design%20work/project-13.webp"),
+      asset("assets/event%20banner%20design%20work/project-14.webp"),
+    ],
     tags: ["In Game", "Banner", "Presentation"],
   },
   {
@@ -86,6 +115,19 @@ const projects = [
     tags: ["Pixel", "Costume", "Scene"],
   },
 ];
+
+const getHeroReelItems = () =>
+  projects.flatMap((project, projectIndex) => {
+    const gallery = project.gallery ?? [project.fullImage];
+    const galleryThumbs = project.galleryThumbs ?? gallery;
+
+    return gallery.map((image, imageIndex) => ({
+      image: galleryThumbs[imageIndex] ?? image,
+      title: project.title,
+      projectIndex,
+      imageIndex,
+    }));
+  });
 
 const strengths = [
   {
@@ -239,7 +281,6 @@ function ProjectLightbox({ activeIndex, activeImageIndex, onClose, onNext, onPre
             aria-label={`查看 ${project.title} ${index + 1}`}
           >
             <img src={galleryThumbs[index] ?? image} alt="" loading="lazy" decoding="async" />
-            <span>{String(index + 1).padStart(2, "0")}</span>
           </button>
         ))}
       </div>
@@ -248,7 +289,7 @@ function ProjectLightbox({ activeIndex, activeImageIndex, onClose, onNext, onPre
 }
 
 function Hero({ onOpenProject }) {
-  const heroReel = projects.slice(0, 5);
+  const heroReel = getHeroReelItems();
   const heroReelLoop = [...heroReel, ...heroReel];
 
   return (
@@ -287,15 +328,15 @@ function Hero({ onOpenProject }) {
         <div className="hero-reel-track">
           {[0, 1].map((group) => (
             <div className="hero-reel-group" key={group} aria-hidden={group === 1}>
-              {heroReelLoop.map((project, index) => (
+              {heroReelLoop.map((item, index) => (
                 <button
                   className="hero-reel-card"
                   type="button"
-                  key={`${project.title}-${group}-${index}`}
-                  onClick={() => onOpenProject(index % heroReel.length)}
+                  key={`${item.title}-${item.projectIndex}-${item.imageIndex}-${group}-${index}`}
+                  onClick={() => onOpenProject(item.projectIndex, item.imageIndex)}
                 >
-                  <img src={project.image} alt="" loading={group === 0 ? "eager" : "lazy"} decoding="async" />
-                  <strong>{project.title}</strong>
+                  <img src={item.image} alt="" loading={group === 0 ? "eager" : "lazy"} decoding="async" />
+                  <strong>{item.title}</strong>
                 </button>
               ))}
             </div>
@@ -362,6 +403,21 @@ function About() {
 
         <div className="experience-overview">
           <div className="experience-portrait-card">
+            <TiltedCard
+              imageSrc={asset("assets/profile-character.webp")}
+              altText="角色人物图"
+              captionText="Character Concept Design"
+              containerHeight="520px"
+              containerWidth="100%"
+              imageHeight="520px"
+              imageWidth="100%"
+              rotateAmplitude={8}
+              scaleOnHover={1.035}
+              showMobileWarning={false}
+              showTooltip={false}
+              displayOverlayContent
+              overlayContent={<span className="experience-portrait-badge">Character Concept Design</span>}
+            />
             <img src={asset("assets/profile-character.webp")} alt="角色人物图" loading="lazy" decoding="async" />
             <span>Character Concept Design</span>
           </div>
@@ -745,9 +801,9 @@ export default function App() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   usePortfolioMotion();
 
-  const openProject = (index) => {
+  const openProject = (index, imageIndex = 0) => {
     setActiveProjectIndex(index);
-    setActiveImageIndex(0);
+    setActiveImageIndex(imageIndex);
   };
   const closeProject = () => setActiveProjectIndex(null);
   const showPrevProject = () => {
