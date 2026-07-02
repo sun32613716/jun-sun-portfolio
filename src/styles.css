@@ -531,7 +531,7 @@ video {
   transition:
     border-color 160ms ease,
     transform 160ms ease;
-  cursor: zoom-in;
+  cursor: pointer;
   padding: 0;
   text-align: left;
 }
@@ -1176,7 +1176,7 @@ video {
   border: 0;
   border-radius: inherit;
   background: transparent;
-  cursor: zoom-in;
+  cursor: pointer;
   padding: 0;
   text-align: left;
 }
