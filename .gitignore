@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.runtime/
+.vite-*.log
+*.log
+
+.chrome-*/
+.tmp-chrome-debug*/
+
+.DS_Store
+Thumbs.db
