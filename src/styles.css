@@ -505,6 +505,8 @@ video {
   width: max-content;
   gap: 14px;
   animation: hero-reel-scroll 82s linear infinite;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 .hero-reel:hover .hero-reel-track {
@@ -534,6 +536,9 @@ video {
   cursor: pointer;
   padding: 0;
   text-align: left;
+  backface-visibility: hidden;
+  contain: layout paint;
+  transform: translate3d(0, 0, 0);
 }
 
 .hero-reel-card::after {
@@ -548,6 +553,8 @@ video {
   height: 100%;
   object-fit: cover;
   transition: transform 320ms ease;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 .hero-reel-card:hover {
@@ -574,20 +581,26 @@ video {
 }
 
 .hero-reel-card strong {
-  right: 12px;
+  right: 18px;
   bottom: 12px;
+  max-width: calc(100% - 30px);
   color: rgba(248, 251, 255, 0.88);
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: 11px;
+  line-height: 1.18;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-break: keep-all;
 }
 
 @keyframes hero-reel-scroll {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(calc(-50% - 7px));
+    transform: translate3d(calc(-50% - 7px), 0, 0);
   }
 }
 
@@ -1396,15 +1409,20 @@ video {
 .lightbox-strip {
   position: relative;
   z-index: 1;
-  display: grid;
+  display: flex;
   width: min(100%, 980px);
-  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   margin-top: 18px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 0 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(185, 255, 45, 0.52) rgba(242, 245, 247, 0.08);
 }
 
 .lightbox-strip button {
   position: relative;
+  flex: 0 0 188px;
   height: 78px;
   overflow: hidden;
   border: 1px solid rgba(242, 245, 247, 0.14);
@@ -1431,6 +1449,20 @@ video {
   opacity: 1;
 }
 
+.lightbox-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.lightbox-strip::-webkit-scrollbar-track {
+  background: rgba(242, 245, 247, 0.08);
+  border-radius: 999px;
+}
+
+.lightbox-strip::-webkit-scrollbar-thumb {
+  background: rgba(185, 255, 45, 0.55);
+  border-radius: 999px;
+}
+
 .lightbox-strip span {
   position: absolute;
   top: 8px;
@@ -1451,6 +1483,10 @@ video {
   max-width: 600px;
   font-size: 31px;
   line-height: 1.12;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .project-overlay p {

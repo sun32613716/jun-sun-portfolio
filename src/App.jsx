@@ -110,8 +110,17 @@ const projects = [
   {
     title: "Pixel art works",
     meta: "像素设定 / 像素换装 / 像素场景",
-    image: asset("assets/project-ingame.webp"),
-    fullImage: asset("assets/project-ingame-full.webp"),
+    image: asset("assets/pixel%20art%20works/pixel-01.gif"),
+    fullImage: asset("assets/pixel%20art%20works/pixel-01.gif"),
+    gallery: [
+      asset("assets/pixel%20art%20works/pixel-01.gif"),
+      asset("assets/pixel%20art%20works/pixel-02.png"),
+      asset("assets/pixel%20art%20works/pixel-03.png"),
+      asset("assets/pixel%20art%20works/pixel-04.png"),
+      asset("assets/pixel%20art%20works/pixel-05.png"),
+      asset("assets/pixel%20art%20works/pixel-06.png"),
+      asset("assets/pixel%20art%20works/pixel-07.gif"),
+    ],
     tags: ["Pixel", "Costume", "Scene"],
   },
 ];
@@ -181,11 +190,20 @@ function ProjectLightbox({ activeIndex, activeImageIndex, onClose, onNext, onPre
   const [pan, setPan] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const dragRef = useRef({ pointerId: null, startX: 0, startY: 0, originX: 0, originY: 0 });
+  const activeThumbRef = useRef(null);
 
   useEffect(() => {
     setZoom(1);
     setPan({ x: 0, y: 0 });
     setIsDragging(false);
+  }, [activeIndex, activeImageIndex]);
+
+  useEffect(() => {
+    activeThumbRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
   }, [activeIndex, activeImageIndex]);
 
   if (activeIndex === null) return null;
@@ -275,6 +293,7 @@ function ProjectLightbox({ activeIndex, activeImageIndex, onClose, onNext, onPre
         {gallery.map((image, index) => (
           <button
             className={index === activeImageIndex ? "is-active" : ""}
+            ref={index === activeImageIndex ? activeThumbRef : null}
             key={image}
             type="button"
             onClick={() => onSelectImage(index)}
@@ -290,7 +309,7 @@ function ProjectLightbox({ activeIndex, activeImageIndex, onClose, onNext, onPre
 
 function Hero({ onOpenProject }) {
   const heroReel = getHeroReelItems();
-  const heroReelLoop = [...heroReel, ...heroReel];
+  const heroReelLoop = heroReel;
 
   return (
     <section className="hero section-dark" id="home">
@@ -335,7 +354,7 @@ function Hero({ onOpenProject }) {
                   key={`${item.title}-${item.projectIndex}-${item.imageIndex}-${group}-${index}`}
                   onClick={() => onOpenProject(item.projectIndex, item.imageIndex)}
                 >
-                  <img src={item.image} alt="" loading={group === 0 ? "eager" : "lazy"} decoding="async" />
+                  <img src={item.image} alt="" loading={group === 0 && index < 8 ? "eager" : "lazy"} decoding="async" />
                   <strong>{item.title}</strong>
                 </button>
               ))}
@@ -600,7 +619,7 @@ function usePortfolioMotion() {
           ".hero .eyebrow",
           ".hero h1 span",
           ".hero p",
-          ".hero-reel-card",
+          ".hero-reel-group:first-child .hero-reel-card",
           ".hero-footer",
           ".section-kicker",
           ".section-heading h2",
@@ -658,7 +677,7 @@ function usePortfolioMotion() {
           1.18,
         )
         .fromTo(
-          ".hero-reel-card",
+          ".hero-reel-group:first-child .hero-reel-card",
           { autoAlpha: 0, y: 86, scale: 0.92, clipPath: "inset(100% 0 0 0)" },
           {
             autoAlpha: 1,
