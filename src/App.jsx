@@ -22,7 +22,10 @@ import TiltedCard from "./TiltedCard";
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
-const asset = (path) => `${import.meta.env.BASE_URL}${path}`;
+const asset = (path) => {
+  if (!path || /^(https?:|data:|blob:)/.test(path)) return path;
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+};
 
 const navItems = [
   ["个人作品", "#works"],
@@ -42,84 +45,85 @@ const projects = [
   {
     title: "realistic design works",
     meta: "角色三视图 / 服装结构 / 角色设定",
-    image: asset("assets/project-turnaround.webp"),
-    fullImage: asset("assets/project-turnaround-full.webp"),
+    image: "/assets/realistic%20design%20works/1.png",
+    fullImage: "/assets/realistic%20design%20works/1.png",
+    gallery: [
+      "/assets/realistic%20design%20works/1.png",
+      "/assets/realistic%20design%20works/2.png",
+      "/assets/realistic%20design%20works/3.png",
+      "/assets/realistic%20design%20works/4.png",
+      "/assets/realistic%20design%20works/5.png",
+      "/assets/realistic%20design%20works/6.png",
+    ],
     tags: ["Turnaround", "Outfit", "Game Ready"],
   },
   {
     title: "chibi design works",
     meta: "Q版设定 / Q版原画",
-    image: asset("assets/chibi%20design%20work/project-Little%20Mage-thumb.webp"),
-    fullImage: asset("assets/chibi%20design%20work/project-Little%20Mage.webp"),
+    image: "/assets/chibi%20design%20work/project-Little%20Mage-thumb.webp",
+    fullImage: "/assets/chibi%20design%20work/project-Little%20Mage.webp",
     gallery: [
-      asset("assets/chibi%20design%20work/project-dog.webp"),
-      asset("assets/chibi%20design%20work/project-Little%20Mage.webp"),
-      asset("assets/chibi%20design%20work/project-mario.webp"),
-      asset("assets/chibi%20design%20work/project-rabbit.webp"),
+      "/assets/chibi%20design%20work/project-dog.webp",
+      "/assets/chibi%20design%20work/project-Little%20Mage.webp",
+      "/assets/chibi%20design%20work/project-mario.webp",
+      "/assets/chibi%20design%20work/project-rabbit.webp",
     ],
     galleryThumbs: [
-      asset("assets/chibi%20design%20work/project-dog-thumb.webp"),
-      asset("assets/chibi%20design%20work/project-Little%20Mage-thumb.webp"),
-      asset("assets/chibi%20design%20work/project-mario-thumb.webp"),
-      asset("assets/chibi%20design%20work/project-rabbit-thumb.webp"),
+      "/assets/chibi%20design%20work/project-dog-thumb.webp",
+      "/assets/chibi%20design%20work/project-Little%20Mage-thumb.webp",
+      "/assets/chibi%20design%20work/project-mario-thumb.webp",
+      "/assets/chibi%20design%20work/project-rabbit-thumb.webp",
     ],
     tags: ["Design Sheet", "Gear", "Material"],
   },
   {
-    title: "daily practice works",
-    meta: "日常练习",
-    image: asset("assets/project-skin-board.webp"),
-    fullImage: asset("assets/project-skin-board-full.webp"),
-    tags: ["Skin", "Variant", "Sci-Fi"],
-  },
-  {
     title: "event banner design works",
     meta: "banner活动设计页面",
-    image: asset("assets/event%20banner%20design%20work/project-2.webp"),
-    fullImage: asset("assets/event%20banner%20design%20work/project-2.webp"),
+    image: "/assets/event%20banner%20design%20work/project-2.webp",
+    fullImage: "/assets/event%20banner%20design%20work/project-2.webp",
     gallery: [
-      asset("assets/event%20banner%20design%20work/project-2.webp"),
-      asset("assets/event%20banner%20design%20work/project-4.webp"),
-      asset("assets/event%20banner%20design%20work/project-5.webp"),
-      asset("assets/event%20banner%20design%20work/project-6.webp"),
-      asset("assets/event%20banner%20design%20work/project-7.webp"),
-      asset("assets/event%20banner%20design%20work/project-8.webp"),
-      asset("assets/event%20banner%20design%20work/project-9.webp"),
-      asset("assets/event%20banner%20design%20work/project-10.webp"),
-      asset("assets/event%20banner%20design%20work/project-11.webp"),
-      asset("assets/event%20banner%20design%20work/project-12.webp"),
-      asset("assets/event%20banner%20design%20work/project-13.webp"),
-      asset("assets/event%20banner%20design%20work/project-14.webp"),
+      "/assets/event%20banner%20design%20work/project-2.webp",
+      "/assets/event%20banner%20design%20work/project-4.webp",
+      "/assets/event%20banner%20design%20work/project-5.webp",
+      "/assets/event%20banner%20design%20work/project-6.webp",
+      "/assets/event%20banner%20design%20work/project-7.webp",
+      "/assets/event%20banner%20design%20work/project-8.webp",
+      "/assets/event%20banner%20design%20work/project-9.webp",
+      "/assets/event%20banner%20design%20work/project-10.webp",
+      "/assets/event%20banner%20design%20work/project-11.webp",
+      "/assets/event%20banner%20design%20work/project-12.webp",
+      "/assets/event%20banner%20design%20work/project-13.webp",
+      "/assets/event%20banner%20design%20work/project-14.webp",
     ],
     galleryThumbs: [
-      asset("assets/event%20banner%20design%20work/project-2.webp"),
-      asset("assets/event%20banner%20design%20work/project-4.webp"),
-      asset("assets/event%20banner%20design%20work/project-5.webp"),
-      asset("assets/event%20banner%20design%20work/project-6.webp"),
-      asset("assets/event%20banner%20design%20work/project-7.webp"),
-      asset("assets/event%20banner%20design%20work/project-8.webp"),
-      asset("assets/event%20banner%20design%20work/project-9.webp"),
-      asset("assets/event%20banner%20design%20work/project-10.webp"),
-      asset("assets/event%20banner%20design%20work/project-11.webp"),
-      asset("assets/event%20banner%20design%20work/project-12.webp"),
-      asset("assets/event%20banner%20design%20work/project-13.webp"),
-      asset("assets/event%20banner%20design%20work/project-14.webp"),
+      "/assets/event%20banner%20design%20work/project-2.webp",
+      "/assets/event%20banner%20design%20work/project-4.webp",
+      "/assets/event%20banner%20design%20work/project-5.webp",
+      "/assets/event%20banner%20design%20work/project-6.webp",
+      "/assets/event%20banner%20design%20work/project-7.webp",
+      "/assets/event%20banner%20design%20work/project-8.webp",
+      "/assets/event%20banner%20design%20work/project-9.webp",
+      "/assets/event%20banner%20design%20work/project-10.webp",
+      "/assets/event%20banner%20design%20work/project-11.webp",
+      "/assets/event%20banner%20design%20work/project-12.webp",
+      "/assets/event%20banner%20design%20work/project-13.webp",
+      "/assets/event%20banner%20design%20work/project-14.webp",
     ],
     tags: ["In Game", "Banner", "Presentation"],
   },
   {
     title: "Pixel art works",
     meta: "像素设定 / 像素换装 / 像素场景",
-    image: asset("assets/pixel%20art%20works/pixel-01.gif"),
-    fullImage: asset("assets/pixel%20art%20works/pixel-01.gif"),
+    image: "/assets/pixel%20art%20works/pixel-01.gif",
+    fullImage: "/assets/pixel%20art%20works/pixel-01.gif",
     gallery: [
-      asset("assets/pixel%20art%20works/pixel-01.gif"),
-      asset("assets/pixel%20art%20works/pixel-02.png"),
-      asset("assets/pixel%20art%20works/pixel-03.png"),
-      asset("assets/pixel%20art%20works/pixel-04.png"),
-      asset("assets/pixel%20art%20works/pixel-05.png"),
-      asset("assets/pixel%20art%20works/pixel-06.png"),
-      asset("assets/pixel%20art%20works/pixel-07.gif"),
+      "/assets/pixel%20art%20works/pixel-01.gif",
+      "/assets/pixel%20art%20works/pixel-02.png",
+      "/assets/pixel%20art%20works/pixel-03.png",
+      "/assets/pixel%20art%20works/pixel-04.png",
+      "/assets/pixel%20art%20works/pixel-05.png",
+      "/assets/pixel%20art%20works/pixel-06.png",
+      "/assets/pixel%20art%20works/pixel-07.gif",
     ],
     tags: ["Pixel", "Costume", "Scene"],
   },
@@ -276,7 +280,7 @@ function ProjectLightbox({ activeIndex, activeImageIndex, onClose, onNext, onPre
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
         >
-        <img src={activeImage} alt={`${project.title} 全图`} decoding="async" />
+        <img src={asset(activeImage)} alt={`${project.title} 全图`} decoding="async" />
         </div>
         <figcaption>
           <span>
@@ -299,7 +303,7 @@ function ProjectLightbox({ activeIndex, activeImageIndex, onClose, onNext, onPre
             onClick={() => onSelectImage(index)}
             aria-label={`查看 ${project.title} ${index + 1}`}
           >
-            <img src={galleryThumbs[index] ?? image} alt="" loading="lazy" decoding="async" />
+            <img src={asset(galleryThumbs[index] ?? image)} alt="" loading="lazy" decoding="async" />
           </button>
         ))}
       </div>
@@ -315,8 +319,8 @@ function Hero({ onOpenProject }) {
     <section className="hero section-dark" id="home">
       <video
         className="hero-video"
-        src={asset("assets/hero-loop.mp4")}
-        poster={asset("assets/hero-poster.webp")}
+        src={asset("/assets/donghua.mp4")}
+        poster={asset("/assets/hero-poster.webp")}
         preload="metadata"
         autoPlay
         muted
@@ -354,7 +358,7 @@ function Hero({ onOpenProject }) {
                   key={`${item.title}-${item.projectIndex}-${item.imageIndex}-${group}-${index}`}
                   onClick={() => onOpenProject(item.projectIndex, item.imageIndex)}
                 >
-                  <img src={item.image} alt="" loading={group === 0 && index < 8 ? "eager" : "lazy"} decoding="async" />
+                  <img src={asset(item.image)} alt="" loading={group === 0 && index < 8 ? "eager" : "lazy"} decoding="async" />
                   <strong>{item.title}</strong>
                 </button>
               ))}
@@ -423,7 +427,7 @@ function About() {
         <div className="experience-overview">
           <div className="experience-portrait-card">
             <TiltedCard
-              imageSrc={asset("assets/profile-character.webp")}
+              imageSrc={asset("/assets/profile-character.webp")}
               altText="角色人物图"
               captionText="Character Concept Design"
               containerHeight="520px"
@@ -437,7 +441,7 @@ function About() {
               displayOverlayContent
               overlayContent={<span className="experience-portrait-badge">Character Concept Design</span>}
             />
-            <img src={asset("assets/profile-character.webp")} alt="角色人物图" loading="lazy" decoding="async" />
+            <img src={asset("/assets/profile-character.webp")} alt="角色人物图" loading="lazy" decoding="async" />
             <span>Character Concept Design</span>
           </div>
 
@@ -522,7 +526,7 @@ function Works({ onOpenProject }) {
                 type="button"
                 onClick={() => onOpenProject(index)}
               >
-                <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
+                <img src={asset(project.image)} alt={project.title} loading="lazy" decoding="async" />
                 <div className="project-overlay">
                   <h3>{project.title}</h3>
                   <p>{project.meta}</p>
