@@ -379,7 +379,7 @@ function About() {
     { label: "当前身份", value: "游戏角色原画师 / 角色概念设计师" },
     { label: "创作方向", value: "写实角色 / Q 版角色" },
     { label: "所在地", value: "大连" },
-    { label: "到岗时间", value: "2026 年 7 月中旬" },
+    { label: "到岗时间", value: "2026 年 8 月中旬" },
   ];
 
   const buildingTags = ["角色设定", "装备拆解", "配色变体", "皮肤方案", "游戏 Banner"];
@@ -580,7 +580,7 @@ function Contact() {
           <span>更有辨识度的游戏角色设计项目。</span>
         </h2>
         <p>
-          期望岗位：游戏角色原画师 / 角色概念设计师。到岗时间：2026 年 7 月中旬。
+          期望岗位：游戏角色原画师 / 角色概念设计师。到岗时间：2026 年 8 月中旬。
         </p>
         <div className="contact-info">
           <p>邮件：32613716@qq.com</p>
