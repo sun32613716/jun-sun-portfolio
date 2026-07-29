@@ -320,8 +320,7 @@ function Hero({ onOpenProject }) {
       <video
         className="hero-video"
         src={asset("/assets/donghua.mp4")}
-        poster={asset("/assets/hero-poster.webp")}
-        preload="metadata"
+        preload="auto"
         autoPlay
         muted
         loop
