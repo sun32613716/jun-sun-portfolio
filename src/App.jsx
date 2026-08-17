@@ -426,7 +426,7 @@ function About() {
         <div className="experience-overview">
           <div className="experience-portrait-card">
             <TiltedCard
-              imageSrc={asset("/assets/profile-character.webp")}
+              imageSrc={asset("/assets/profile-avatar.png")}
               altText="角色人物图"
               captionText="Character Concept Design"
               containerHeight="520px"
@@ -440,7 +440,7 @@ function About() {
               displayOverlayContent
               overlayContent={<span className="experience-portrait-badge">Character Concept Design</span>}
             />
-            <img src={asset("/assets/profile-character.webp")} alt="角色人物图" loading="lazy" decoding="async" />
+            <img src={asset("/assets/profile-avatar.png")} alt="角色人物图" loading="lazy" decoding="async" />
             <span>Character Concept Design</span>
           </div>
 
